@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    inputs:
+      ver: 
+        type: string
+        default: main
+        required: true
 
 jobs:
   check_version_valid_and_new:
@@ -9,5 +14,5 @@ jobs:
         uses: actions/checkout@v3.3.0
 
       - name: Install Node & Dependencies
-        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@${{github.job_workflow_sha}}
+        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@${{inputs.ver}}
 
