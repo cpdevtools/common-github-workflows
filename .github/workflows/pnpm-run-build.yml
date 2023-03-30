@@ -15,3 +15,10 @@ jobs:
 
       - name: Install Node & Dependencies
         uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
+
+
+# on publish
+  # create branch for version
+  # find and replace all self references with version
+  # commit branch
+  # tag branch
