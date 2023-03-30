@@ -1,0 +1,28 @@
+name: "Setup Node"
+description: "Setup node, yarn and install dependencies"
+
+inputs:
+  nodeVersion:
+    description: "The version of NodeJs to install"
+    required: false
+    default: "16.18.1"
+  githubToken:
+    description: "Github Token"
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v3.6.0
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
+      with:
+        node-version: ${{ inputs.nodeVersion }}
+        cache: "yarn"
+        cache-dependency-path: yarn.lock
+
+    - run: yarn install --ignore-scripts --frozen-lockfile
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
