@@ -52,14 +52,23 @@ export async function createVersionBranch(version: string = 'main') {
 
 
             if (isPreRelease) {
-                await octokit.git.createRef({
+
+                await octokit.git.updateRef({
                     owner: 'cpdevtools',
                     repo: 'common-github-workflows',
-                    ref: `refs/tags/next`,
+                    ref: `heads/next`,
                     sha: await git.revparse([versionBranchName])
+                
                 });
+
+                // await octokit.git.createRef({
+                //     owner: 'cpdevtools',
+                //     repo: 'common-github-workflows',
+                //     ref: `refs/tags/next`,
+                //     sha: await git.revparse([versionBranchName])
+                // });
             } else {
-                await octokit.git.createRef({
+                await octokit.git.updateRef({
                     owner: 'cpdevtools',
                     repo: 'common-github-workflows',
                     ref: `refs/tags/latest`,
@@ -67,14 +76,14 @@ export async function createVersionBranch(version: string = 'main') {
                 });
             }
 
-            await octokit.git.createRef({
+            await octokit.git.updateRef({
                 owner: 'cpdevtools',
                 repo: 'common-github-workflows',
                 ref: `refs/tags/v${ver.major}`,
                 sha: await git.revparse([versionBranchName])
             });
 
-            await octokit.git.createRef({
+            await octokit.git.updateRef({
                 owner: 'cpdevtools',
                 repo: 'common-github-workflows',
                 ref: `refs/tags/v${ver.major}.${ver.minor}`,
