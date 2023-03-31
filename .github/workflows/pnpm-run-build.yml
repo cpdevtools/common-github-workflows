@@ -1,24 +1,15 @@
 on:
   workflow_call:
     inputs:
-      ver: 
+      ver:
         type: string
         default: main
         required: true
-
 jobs:
   check_version_valid_and_new:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
-
       - name: Install Node & Dependencies
         uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
-
-
-# on publish
-  # create branch for version
-  # find and replace all self references with version
-  # commit branch
-  # tag branch
