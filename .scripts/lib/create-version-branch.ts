@@ -47,6 +47,14 @@ export async function createVersionBranch(version: string = 'main') {
                 draft: false,
                 prerelease: ver.prerelease.length > 0
             });
+
+            await octokit.git.createRef({
+                owner: 'cpdevtools',
+                repo: 'common-github-workflows',
+                ref: `refs/tags/latest`,
+                sha: await git.revparse([versionBranchName])
+            });
+            
         } finally {
             await git.checkout(currentBranchName);
         }
