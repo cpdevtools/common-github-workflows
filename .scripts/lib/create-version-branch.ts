@@ -9,8 +9,6 @@ const octokit = new Octokit({
 });
 
 export async function createVersionBranch(version: string = 'main') {
-
-
     if (version !== 'main') {
         const git = simpleGit();
         const currentBranch = await git.branch();
@@ -29,10 +27,6 @@ export async function createVersionBranch(version: string = 'main') {
         }
 
         try {
-            console.log(`Creating branch ${versionBranchName}`);
-            console.log(`Applying version ${version}`);
-            console.log(`currentBranchName ${currentBranchName}`);
-
             await git.checkoutBranch(versionBranchName, currentBranchName);
 
             applyVersion(version);
