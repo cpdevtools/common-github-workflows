@@ -16,6 +16,9 @@ export async function createVersionBranch(version: string = 'main') {
         const currentBranch = await git.branch();
         const currentBranchName = currentBranch.current;
         const versionBranchName = `release/${version}`;
+
+        await git.fetch(['--all', '--prune']);
+
         const branchExists = await git.branch(['-a']).then((branches) => {
             return branches.all.includes(`remotes/origin/${versionBranchName}`);
         });

@@ -22,7 +22,7 @@ export function applyVersion(version: string = 'main') {
                         if (step.uses && step.uses.startsWith(SELF_PATH)) {
                             var versionParts = step.uses.split('@');
                             if (versionParts.length == 2) {
-                                step.uses = versionParts[0] + '@' + version;
+                                step.uses = versionParts[0] + '@v' + version;
                                 modified = true;
                             }
                         }
@@ -37,7 +37,7 @@ export function applyVersion(version: string = 'main') {
                 if (run.uses && run.uses.startsWith(SELF_PATH)) {
                     var versionParts = run.uses.split('@');
                     if (versionParts.length == 2) {
-                        run.uses = versionParts[0] + '@' + version;
+                        run.uses = versionParts[0] + '@v' + version;
                         modified = true;
                     }
                 }
