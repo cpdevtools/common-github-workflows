@@ -3,11 +3,13 @@ import { applyVersion } from './apply-version';
 
 
 export async function createVersionBranch(version: string = 'main') {
+    console.log('createVersionBranch', version);
+
     if (version !== 'main') {
         const git = simpleGit();
         const currentBranch = await git.branch();
         const currentBranchName = currentBranch.current;
-        const versionBranchName = `release/${currentBranchName}`;
+        const versionBranchName = `release/${version}`;
         const branchExists = await git.branch(['-a']).then((branches) => {
             return branches.all.includes(`remotes/origin/${versionBranchName}`);
         });
@@ -17,14 +19,20 @@ export async function createVersionBranch(version: string = 'main') {
             return;
         }
 
-        await git.checkoutBranch(versionBranchName, currentBranchName);
+        try {
+            console.log(`Creating branch ${versionBranchName}`);
+            console.log(`Applying version ${version}`);
+            console.log(`currentBranchName ${currentBranchName}`);
 
-        applyVersion(version);
+            await git.checkoutBranch(versionBranchName, currentBranchName);
 
-        await git.add('.github/**/*.{yml,yaml}');
-        await git.commit(`Apply version ${version}`);
+            applyVersion(version);
 
-        await git.push('origin', versionBranchName);
-        await git.checkout(currentBranchName);
+            await git.add('.');
+            await git.commit(`Apply version ${version}`);
+            await git.push('origin', versionBranchName);
+        } finally {
+            await git.checkout(currentBranchName);
+        }
     }
 }

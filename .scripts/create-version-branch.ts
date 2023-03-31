@@ -1,4 +1,4 @@
-import { createVersionBranch } from 'lib/create-version-branch';
+import { createVersionBranch } from './lib/create-version-branch';
 import yargs from 'yargs';
 import { hideBin } from "yargs/helpers";
 
