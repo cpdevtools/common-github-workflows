@@ -1,14 +1,12 @@
-name: "Build"
-description: "Build the project"
-
+name: Build
+description: Build the project
 inputs:
   packageManager:
     description: Package manager to use
     required: true
     default: pnpm
-
 runs:
-  using: "composite"
+  using: composite
   steps:
     - run: ${{ inputs.packageManager }} run actions-build
       shell: bash
