@@ -74,7 +74,7 @@ async function upsertTag(tagName: string, sha: string) {
         await octokit.git.createRef({
             owner: 'cpdevtools',
             repo: 'common-github-workflows',
-            ref: `refs/tags/${tagName}`,
+            ref: `tags/${tagName}`,
             sha
         });
     } catch (e) {
@@ -83,7 +83,7 @@ async function upsertTag(tagName: string, sha: string) {
         await octokit.git.updateRef({
             owner: 'cpdevtools',
             repo: 'common-github-workflows',
-            ref: `refs/tags/${tagName}`,
+            ref: `tags/${tagName}`,
             sha
         });
     }
