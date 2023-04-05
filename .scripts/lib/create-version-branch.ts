@@ -74,7 +74,7 @@ async function upsertTag(tagName: string, sha: string) {
         await octokit.git.createRef({
             owner: 'cpdevtools',
             repo: 'common-github-workflows',
-            ref: `tags/${tagName}`,
+            ref: `refs/tags/${tagName}`,
             sha
         });
     } catch (e) {
