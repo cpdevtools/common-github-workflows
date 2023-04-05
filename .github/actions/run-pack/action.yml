@@ -1,14 +1,12 @@
-name: "Pack npm module"
-description: "Package the npm module to prepare it for publishing"
-
+name: Pack npm module
+description: Package the npm module to prepare it for publishing
 inputs:
   packageManager:
     description: Package manager to use
     required: true
     default: pnpm
-
 runs:
-  using: "composite"
+  using: composite
   steps:
     - run: ${{ inputs.packageManager }} run actions-pack
       shell: bash
