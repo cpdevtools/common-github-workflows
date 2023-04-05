@@ -78,6 +78,7 @@ async function upsertTag(tagName: string, sha: string) {
             sha
         });
     } catch (e) {
+        console.error('Failed to create tag ' + tagName);
         console.error(e);
         await octokit.git.updateRef({
             owner: 'cpdevtools',
