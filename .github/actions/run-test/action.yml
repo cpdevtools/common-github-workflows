@@ -1,0 +1,14 @@
+name: "Test"
+description: "Test the project"
+
+inputs:
+  packageManager:
+    description: Package manager to use
+    required: true
+    default: pnpm
+
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ inputs.packageManager }} run actions-test
+      shell: bash

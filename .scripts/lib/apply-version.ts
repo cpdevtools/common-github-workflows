@@ -5,7 +5,6 @@ import Yaml from 'yaml';
 const SELF_PATH = 'cpdevtools/common-github-workflows/';
 
 export function applyVersion(version: string = 'main') {
-
     const ymlFiles = Glob.sync('.github/**/*.{yml,yaml}');
     let modified = false;
 

@@ -15,6 +15,12 @@ export async function createVersionBranch(version: string = 'main') {
         const currentBranchName = currentBranch.current;
         const versionBranchName = `release/${version}`;
 
+        const status = await git.status();
+        if (status.files.length > 0) {
+            console.log('There are uncommitted changes. Please commit them before creating a new version.');
+            return;
+        }
+
         await git.fetch(['--all', '--prune']);
 
         const branchExists = await git.branch(['-a']).then((branches) => {
@@ -80,3 +86,4 @@ async function upsertTag(tagName: string, sha: string) {
         });
     }
 }
+
