@@ -1,0 +1,19 @@
+name: "Check version"
+description: ""
+
+outputs:
+  version:
+    description: "Version"
+    value: ${{ steps.version.outputs.targetVersion }}
+  isPrerelease:
+    description: "Version"
+    value: ${{ steps.version.outputs.targetIsPrerelease }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: version
+      name: Check Version
+      uses: cpdevtools/action-versions@v0.5
+      with:
+        failInvalidCanCreate: true

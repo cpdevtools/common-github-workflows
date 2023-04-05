@@ -1,0 +1,35 @@
+name: "Create Release"
+description: ""
+
+inputs:
+  githubToken:
+    description: "Github Token"
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check Version
+      id: version
+      uses: cpdevtools/action-versions@v0.5
+      with:
+        failInvalidCanCreate: true
+
+    - name: Create Release
+      id: create_release
+      uses: ncipollo/release-action@v1.12.0
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
+      with:
+        tag: v${{ steps.version.outputs.targetVersion }}
+        name: Release v${{ steps.version.outputs.targetVersion }}
+        body: |
+          Generated Release v${{ steps.version.outputs.targetVersion }}
+        draft: false
+        prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
+
+    - name: Create tags
+      uses: cpdevtools/action-versions@v0.5
+      with:
+        createTags: all
