@@ -1,8 +1,6 @@
 name: Create pull request on version change
-
 on:
-  workflow_call:
-
+  workflow_call: null
 jobs:
   create_pr:
     name: Create a version pull request if necessary

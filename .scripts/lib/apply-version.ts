@@ -8,6 +8,8 @@ export function applyVersion(version: string = 'main') {
     const ymlFiles = Glob.sync('.github/**/*.{yml,yaml}');
     let modified = false;
 
+
+
     for (const file of ymlFiles) {
         const f = readFileSync(file, 'utf8');
         const doc = Yaml.parse(f);
@@ -21,7 +23,8 @@ export function applyVersion(version: string = 'main') {
                         if (step.uses && step.uses.startsWith(SELF_PATH)) {
                             var versionParts = step.uses.split('@');
                             if (versionParts.length == 2) {
-                                step.uses = versionParts[0] + '@v' + version;
+                                const verStr = (version === 'main' ? '@' : '@v') + version;
+                                step.uses = versionParts[0] + verStr;
                                 modified = true;
                             }
                         }
@@ -36,7 +39,8 @@ export function applyVersion(version: string = 'main') {
                 if (run.uses && run.uses.startsWith(SELF_PATH)) {
                     var versionParts = run.uses.split('@');
                     if (versionParts.length == 2) {
-                        run.uses = versionParts[0] + '@v' + version;
+                        const verStr = (version === 'main' ? '@' : '@v') + version;
+                        run.uses = versionParts[0] + verStr;
                         modified = true;
                     }
                 }
