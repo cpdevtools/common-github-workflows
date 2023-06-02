@@ -1,0 +1,17 @@
+name: Set Version
+description:  Set Version
+inputs:
+  packageManager:
+    description: Package manager to use
+    required: true
+    default: pnpm
+runs:
+  using: composite
+  steps:
+    - name: Check Version
+      id: version
+      uses: cpdevtools/action-versions@v0.5
+      with:
+        failInvalidCanCreate: true
+    - run: ${{ inputs.packageManager }} run actions-set-version ${{ steps.version.outputs.targetVersion }}
+      shell: bash

@@ -13,6 +13,7 @@ runs:
       uses: cpdevtools/action-versions@v0.5
       with:
         failInvalidCanCreate: true
+
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1.12.0
@@ -25,6 +26,7 @@ runs:
           Generated Release v${{ steps.version.outputs.targetVersion }}
         draft: false
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
+        
     - name: Create tags
       uses: cpdevtools/action-versions@v0.5
       with:
