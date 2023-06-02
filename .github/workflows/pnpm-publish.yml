@@ -22,11 +22,10 @@ on:
         required: false
         type: string
         default: ${{ github.token }}
-      npmToken:
+    secrets:
+      NPM_TOKEN:
         description: NPM Token
-        type: string
         required: false
-        default: ""
 jobs:
   build_and_run_tests:
     name: Build and run tests
@@ -56,4 +55,4 @@ jobs:
           toNpm: ${{ inputs.toNpm }}
           toGithub: ${{ inputs.toGithub }}
           githubToken: ${{ inputs.githubToken }}
-          npmToken: ${{ inputs.npmToken }}
+          npmToken: ${{ secrets.NPM_TOKEN }}
