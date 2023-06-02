@@ -1,16 +1,14 @@
-name: "Check version"
+name: Check version
 description: ""
-
 outputs:
   version:
-    description: "Version"
+    description: Version
     value: ${{ steps.version.outputs.targetVersion }}
   isPrerelease:
-    description: "Version"
+    description: Version
     value: ${{ steps.version.outputs.targetIsPrerelease }}
-
 runs:
-  using: "composite"
+  using: composite
   steps:
     - id: version
       name: Check Version

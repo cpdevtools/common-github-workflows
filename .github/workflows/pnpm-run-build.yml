@@ -1,8 +1,6 @@
 name: Run Tests using pnpm
-
 on:
-  workflow_call:
-
+  workflow_call: null
 jobs:
   build_and_run_tests:
     name: Build and run tests
@@ -10,12 +8,9 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
-
       - name: Install Node & Dependencies
-        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
-
+        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@vmain
       - name: Build
-        uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
-
+        uses: cpdevtools/common-github-workflows/.github/actions/run-build@vmain
       - name: Run Tests
-        uses: cpdevtools/common-github-workflows/.github/actions/run-test@main
+        uses: cpdevtools/common-github-workflows/.github/actions/run-test@vmain

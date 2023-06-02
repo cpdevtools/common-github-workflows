@@ -1,8 +1,7 @@
-name: "Create Release Pull Request"
-description: "Create Pull Request if required"
-
+name: Create Release Pull Request
+description: Create Pull Request if required
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Auto Create
       uses: cpdevtools/action-versions@v0.5
