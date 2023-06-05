@@ -39,11 +39,12 @@ jobs:
           nodeVersion: ${{ inputs.nodeVersion }}
           githubToken: ${{ inputs.githubToken }}
 
-      - name: Set Version
-        uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@main
 
       - name: Build
         uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
+      
+      - name: Set Version
+        uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@main
 
       - name: Pack
         uses: cpdevtools/common-github-workflows/.github/actions/run-pack@main
