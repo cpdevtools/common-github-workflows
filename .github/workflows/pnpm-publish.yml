@@ -18,10 +18,10 @@ on:
         type: boolean
         default: true
     secrets:
-      NPM_TOKEN:
+      npmToken:
         description: NPM Token
         required: false
-      GITHUB_TOKEN:
+      githubToken:
         description: NPM Token
         required: false
 jobs:
@@ -35,12 +35,12 @@ jobs:
         uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
         with:
           nodeVersion: ${{ inputs.nodeVersion }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.githubToken }}
 
       - name: Build
         uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.githubToken }}
       
       - name: Set Version
         uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@main
@@ -54,5 +54,5 @@ jobs:
           nodeVersion: ${{ inputs.nodeVersion }}
           toNpm: ${{ inputs.toNpm }}
           toGithub: ${{ inputs.toGithub }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          npmToken: ${{ secrets.NPM_TOKEN }}
+          githubToken: ${{ secrets.githubToken }}
+          npmToken: ${{ secrets.npmToken }}
