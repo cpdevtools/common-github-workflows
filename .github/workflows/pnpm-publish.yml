@@ -39,7 +39,6 @@ jobs:
           nodeVersion: ${{ inputs.nodeVersion }}
           githubToken: ${{ inputs.githubToken }}
 
-
       - name: Build
         uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
       
