@@ -59,6 +59,8 @@ runs:
 
     - if: ${{ inputs.toNpm == 'true'}}
       env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.npmToken }}
+
       run: pnpm run actions-publish
       shell: bash
