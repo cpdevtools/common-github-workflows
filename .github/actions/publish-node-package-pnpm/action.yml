@@ -33,12 +33,17 @@ runs:
         registry-url: https://npm.pkg.github.com/
         always-auth: true
         scope: ${{ github.repository_owner }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
+        NODE_AUTH_TOKEN: ${{ inputs.githubToken }}
+
     - if: ${{ inputs.toGithub == 'true'}}
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.githubToken }}
       run: pnpm run actions-publish
       shell: bash
+
     - if: ${{ inputs.toNpm == 'true'}}
       uses: actions/setup-node@v3.6.0
       with:
@@ -48,6 +53,10 @@ runs:
         registry-url: https://registry.npmjs.org
         always-auth: true
         scope: ${{ github.repository_owner }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
+        NODE_AUTH_TOKEN: ${{ inputs.npmToken }}
+
     - if: ${{ inputs.toNpm == 'true'}}
       env:
         NODE_AUTH_TOKEN: ${{ inputs.npmToken }}

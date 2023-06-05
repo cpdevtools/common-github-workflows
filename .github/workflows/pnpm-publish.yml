@@ -39,8 +39,6 @@ jobs:
 
       - name: Build
         uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
-        with:
-          githubToken: ${{ secrets.githubToken }}
       
       - name: Set Version
         uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@main
