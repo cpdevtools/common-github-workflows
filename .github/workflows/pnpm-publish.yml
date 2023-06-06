@@ -54,3 +54,6 @@ jobs:
           toGithub: ${{ inputs.toGithub }}
           githubToken: ${{ secrets.githubToken }}
           npmToken: ${{ secrets.npmToken }}
+          
+      - name: Create Release
+        uses: cpdevtools/common-github-workflows/.github/actions/create-release@main
