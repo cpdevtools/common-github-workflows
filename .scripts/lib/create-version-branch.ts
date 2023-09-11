@@ -17,7 +17,7 @@ export async function createVersionBranch(version: string = 'main') {
 
         const status = await git.status();
         if (status.files.length > 0) {
-            console.log('There are uncommitted changes. Please commit them before creating a new version.');
+            console.info('There are uncommitted changes. Please commit them before creating a new version.');
             return;
         }
 
@@ -28,7 +28,7 @@ export async function createVersionBranch(version: string = 'main') {
         });
 
         if (branchExists) {
-            console.log(`Branch ${versionBranchName} already exists.`);
+            console.info(`Branch ${versionBranchName} already exists.`);
             return;
         }
 
