@@ -1,0 +1,16 @@
+name: Build
+description: Run the pnpm script recursively 
+inputs:
+  script:
+    description: the script to run
+    required: true
+  projectFilter:
+    description: Project filter
+    required: true
+    default: '*'
+
+runs:
+  using: composite
+  steps:
+    - run: pnpm run -r --filter ${{ inputs.projectFilter }} ${{ inputs.script }}
+      shell: bash
