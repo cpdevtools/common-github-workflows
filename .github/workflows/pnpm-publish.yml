@@ -21,7 +21,7 @@ on:
       npmToken:
         description: NPM Token
         required: false
-      ghToken:
+      githubToken:
         description: Github Token
         required: false
 jobs:
@@ -35,7 +35,7 @@ jobs:
         uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
         with:
           nodeVersion: ${{ inputs.nodeVersion }}
-          githubToken: ${{ secrets.ghToken }}
+          githubToken: ${{ secrets.githubToken }}
 
       - name: Build
         uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
@@ -52,7 +52,7 @@ jobs:
           nodeVersion: ${{ inputs.nodeVersion }}
           toNpm: ${{ inputs.toNpm }}
           toGithub: ${{ inputs.toGithub }}
-          githubToken: ${{ secrets.ghToken }}
+          githubToken: ${{ secrets.githubToken }}
           npmToken: ${{ secrets.npmToken }}
 
       - name: Create Release
