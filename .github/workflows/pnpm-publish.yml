@@ -32,28 +32,23 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
       - name: Install Node & Dependencies
-        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
+        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@v0.0.18
         with:
           nodeVersion: ${{ inputs.nodeVersion }}
           githubToken: ${{ secrets.githubToken }}
-
       - name: Build
-        uses: cpdevtools/common-github-workflows/.github/actions/run-build@main
-
+        uses: cpdevtools/common-github-workflows/.github/actions/run-build@v0.0.18
       - name: Set Version
-        uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@main
-
+        uses: cpdevtools/common-github-workflows/.github/actions/run-set-version@v0.0.18
       - name: Pack
-        uses: cpdevtools/common-github-workflows/.github/actions/run-pack@main
-
+        uses: cpdevtools/common-github-workflows/.github/actions/run-pack@v0.0.18
       - name: Publish
-        uses: cpdevtools/common-github-workflows/.github/actions/publish-node-package-pnpm@main
+        uses: cpdevtools/common-github-workflows/.github/actions/publish-node-package-pnpm@v0.0.18
         with:
           nodeVersion: ${{ inputs.nodeVersion }}
           toNpm: ${{ inputs.toNpm }}
           toGithub: ${{ inputs.toGithub }}
           githubToken: ${{ secrets.githubToken }}
           npmToken: ${{ secrets.npmToken }}
-
       - name: Create Release
-        uses: cpdevtools/common-github-workflows/.github/actions/create-release@main
+        uses: cpdevtools/common-github-workflows/.github/actions/create-release@v0.0.18
