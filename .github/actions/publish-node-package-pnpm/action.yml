@@ -36,14 +36,12 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.githubToken }}
-
     - if: ${{ inputs.toGithub == 'true'}}
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.githubToken }}
       run: pnpm run actions-publish
       shell: bash
-
     - if: ${{ inputs.toNpm == 'true'}}
       uses: actions/setup-node@v3.6.0
       with:
@@ -56,11 +54,9 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.npmToken }}
-
     - if: ${{ inputs.toNpm == 'true'}}
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
         NODE_AUTH_TOKEN: ${{ inputs.npmToken }}
-
       run: pnpm run actions-publish
       shell: bash

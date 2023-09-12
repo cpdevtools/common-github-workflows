@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
-      - uses: cpdevtools/common-github-workflows/.github/actions/create-release-pull-request@main
+      - uses: cpdevtools/common-github-workflows/.github/actions/create-release-pull-request@v0.0.17

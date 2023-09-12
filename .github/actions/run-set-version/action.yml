@@ -1,5 +1,5 @@
 name: Set Version
-description:  Set Version
+description: Set Version
 inputs:
   packageManager:
     description: Package manager to use
@@ -13,5 +13,6 @@ runs:
       uses: cpdevtools/action-versions@v0.5
       with:
         failInvalidCanCreate: true
-    - run: ${{ inputs.packageManager }} run actions-set-version ${{ steps.version.outputs.targetVersion }}
+    - run: ${{ inputs.packageManager }} run actions-set-version ${{
+        steps.version.outputs.targetVersion }}
       shell: bash

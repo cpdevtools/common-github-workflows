@@ -1,5 +1,5 @@
 name: Build
-description: Run the pnpm script recursively 
+description: Run the pnpm script recursively
 inputs:
   script:
     description: the script to run
@@ -7,8 +7,7 @@ inputs:
   projectFilter:
     description: Project filter
     required: true
-    default: '*'
-
+    default: "*"
 runs:
   using: composite
   steps:
