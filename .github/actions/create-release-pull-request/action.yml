@@ -1,5 +1,12 @@
 name: Create Release Pull Request
 description: Create Pull Request if required
+
+inputs:
+  githubToken:
+    description: Github Token
+    required: false
+    default: ${{ github.token }}
+    
 runs:
   using: composite
   steps:

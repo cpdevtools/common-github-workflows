@@ -1,6 +1,11 @@
 name: Create pull request on version change
 on:
-  workflow_call: null
+  workflow_call: 
+    secrets:
+      githubToken:
+        description: Github Token
+        required: true
+
 jobs:
   create_pr:
     name: Create a version pull request if necessary
@@ -9,3 +14,5 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
       - uses: cpdevtools/common-github-workflows/.github/actions/create-release-pull-request@main
+        with:
+          githubToken: ${{ secrets.githubToken }}
