@@ -21,8 +21,12 @@ jobs:
       - name: Set Tokens on env
         run: |
           echo "${{ secrets.TOKENS }}" > .tokens.env
-          cat .tokens.env
           export $(xargs < .tokens.env)
+          env
+          
+      - name: GET ENV
+        run: |
+          env
 
 
       # - name: Checkout Project
