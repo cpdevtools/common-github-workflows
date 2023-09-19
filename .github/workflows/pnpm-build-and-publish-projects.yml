@@ -23,10 +23,10 @@ jobs:
           echo "${{ secrets.TOKENS }}" > .tokens.env
           export $(xargs < .tokens.env)
           env
-          
+
       - name: GET ENV
         run: |
-          env
+          echo $NPM_TOKEN
 
 
       # - name: Checkout Project
