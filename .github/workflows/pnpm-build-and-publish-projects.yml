@@ -20,8 +20,8 @@ jobs:
 
       - name: Set Tokens on env
         run: |
-          echo "${{ secrets.TOKENS }}" > .env
-          cat .env
+          echo "${{ secrets.TOKENS }}" > .tokens.env
+          cat .tokens.env
 
       # - name: Checkout Project
       #   uses: actions/checkout@v3.3.0
