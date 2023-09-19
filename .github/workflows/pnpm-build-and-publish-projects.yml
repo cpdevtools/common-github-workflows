@@ -6,8 +6,8 @@ on:
         description: the project filter
         required: true
         type: string
+    secrets:
       tokens:
-        type: string
         description: The token envfile
         required: false
 
