@@ -7,6 +7,7 @@ on:
         required: true
         type: string
       tokens:
+        type: string
         description: The token envfile
         required: false
 
@@ -20,7 +21,7 @@ jobs:
         run: |
           echo "${{ inputs.tokens }}" > .tokens.env
           export $(xargs < .tokens.env)
-          env
+          urlencode "${{ inputs.tokens }}"
 
       - name: GET ENV
         run: |
