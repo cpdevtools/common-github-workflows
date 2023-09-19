@@ -6,27 +6,37 @@ on:
         description: the project filter
         required: true
         type: string
-    
+
+    secrets:
+      TOKENS:
+        description: The token envfile
+        required: false
 
 jobs:
   build_and_run_tests:
     name: Build and run tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3.3.0
+
+      - name: Set Tokens on env
+        run: |
+          echo "${{ secrets.TOKENS }}" > .env
+          cat .env
+
+      # - name: Checkout Project
+      #   uses: actions/checkout@v3.3.0
       
-      - name: Install Node & Dependencies
-        uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
+      # - name: Install Node & Dependencies
+      #   uses: cpdevtools/common-github-workflows/.github/actions/node-setup-pnpm@main
       
-      - name: Run Build Script
-        uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
-        with:
-          script: actions-build
-          projectFilter: ${{ inputs.projectFilter }}
+      # - name: Run Build Script
+      #   uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
+      #   with:
+      #     script: actions-build
+      #     projectFilter: ${{ inputs.projectFilter }}
       
-      - name: Run Publish Script
-        uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
-        with:
-          script: actions-publish
-          projectFilter: ${{ inputs.projectFilter }}
+      # - name: Run Publish Script
+      #   uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
+      #   with:
+      #     script: actions-publish
+      #     projectFilter: ${{ inputs.projectFilter }}
