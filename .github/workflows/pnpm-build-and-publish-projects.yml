@@ -19,9 +19,9 @@ jobs:
 
       - name: Set Tokens on env
         run: |
-          echo "${{ inputs.tokens }}" > .tokens.env
+          echo "${{ secrets.tokens }}" > .tokens.env
           export $(xargs < .tokens.env)
-          urlencode "${{ inputs.tokens }}"
+          urlencode "${{ secrets.tokens }}"
 
       - name: GET ENV
         run: |
