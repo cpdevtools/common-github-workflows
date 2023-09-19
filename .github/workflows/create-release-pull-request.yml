@@ -1,10 +1,6 @@
 name: Create pull request on version change
 on:
   workflow_call: 
-    secrets:
-      githubToken:
-        description: Github Token
-        required: true
 
 jobs:
   create_pr:
