@@ -6,9 +6,7 @@ on:
         description: the project filter
         required: true
         type: string
-
-    secrets:
-      TOKENS:
+      tokens:
         description: The token envfile
         required: false
 
@@ -20,7 +18,7 @@ jobs:
 
       - name: Set Tokens on env
         run: |
-          echo "${{ secrets.TOKENS }}" > .tokens.env
+          echo "${{ inputs.tokens }}" > .tokens.env
           export $(xargs < .tokens.env)
           env
 
