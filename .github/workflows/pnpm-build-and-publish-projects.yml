@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "${{ secrets.TOKENS }}" > .tokens.env
           cat .tokens.env
-          export $(xargs < .env)
+          export $(xargs < .tokens.env)
 
       # - name: Checkout Project
       #   uses: actions/checkout@v3.3.0
