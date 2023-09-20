@@ -10,14 +10,17 @@ on:
         description: "The version of NodeJs to install"
         required: false
         default: "v16.18.1"
+        type: string
       githubToken:
         description: "Github Token"
         required: false
         default: ${{ github.token }}
+        type: string
       githubActor:
         description: "Github Actor"
         required: false
         default: ${{ github.actor }}
+        type: string
 
 
 jobs:
