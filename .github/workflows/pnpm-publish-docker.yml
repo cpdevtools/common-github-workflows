@@ -40,12 +40,6 @@ jobs:
           script: actions-build 
           projectFilter: ${{ inputs.projectName }}
 
-      - name: Run Build Script
-        uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
-        with:
-          script: actions-publish
-          projectFilter: ${{ inputs.projectName }}
-
       - name: Publish
         uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm@main
         with:
