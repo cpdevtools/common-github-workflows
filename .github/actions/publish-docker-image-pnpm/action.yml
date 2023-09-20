@@ -1,0 +1,84 @@
+name: Publish npm module
+description: Publish the npm module
+inputs:
+  nodeVersion:
+    description: "The version of NodeJs to install"
+    required: false
+    default: "v16.18.1"
+  githubToken:
+    description: "Github Token"
+    required: false
+    default: ${{ github.token }}
+  githubActor:
+    description: "Github Actor"
+    required: false
+    default: ${{ github.actor }}
+  image:
+    description: "The name of the image to build"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Get Version
+      id: version
+      uses: cpdevtools/action-versions@v0.5
+
+    - name: Docker - Set image id
+      shell: bash
+      run: |
+        ID=ghcr.io/${{github.repository}}/${{ inputs.image }}
+        ID=$(echo $ID | tr '[A-Z]' '[a-z]')
+        echo "IMAGE_ID=$ID" >> $GITHUB_ENV
+
+    - name: Docker - Add full version tag
+      shell: bash
+      run: docker tag ${{ inputs.image }} $IMAGE_ID:${{ steps.version.outputs.targetVersion }}
+
+    - name: Docker - Add MAJOR.MINOR version tag
+      if: ${{ steps.version.outputs.targetIsPrerelease != 'true' }}
+      shell: bash
+      run: docker tag ${{ inputs.image }} $IMAGE_ID:${{ steps.version.outputs.targetMajor }}.${{ steps.version.outputs.targetMinor }}
+
+    - name: Docker - Add MAJOR version tag
+      if: ${{ steps.version.outputs.targetIsPrerelease != 'true' }}
+      shell: bash
+      run: docker tag ${{ inputs.image }} $IMAGE_ID:${{ steps.version.outputs.targetMajor }}
+
+    - name: Docker - Add latest tag
+      if: ${{ steps.version.outputs.isLatestVersion == 'true' }}
+      shell: bash
+      run: docker tag ${{ inputs.image }} $IMAGE_ID:latest
+
+    - name: Docker - Add next tag
+      if: ${{ steps.version.outputs.isHighestVersion == 'true' }}
+      shell: bash
+      run: docker tag ${{ inputs.image }} $IMAGE_ID:next
+
+    - name: Docker - Log into registry
+      shell: bash
+      run: echo "${{ inputs.githubToken }}" | docker login ghcr.io -u ${{ inputs.githubActor }} --password-stdin
+
+    - name: Docker - Push full version tag
+      shell: bash
+      run: docker push $IMAGE_ID:${{ steps.version.outputs.targetVersion }}
+
+    - name: Docker - Push MAJOR.MINOR version tag
+      shell: bash
+      if: ${{ steps.version.outputs.targetIsPrerelease != 'true' }}
+      run: docker push $IMAGE_ID:${{ steps.version.outputs.targetMajor }}.${{ steps.version.outputs.targetMinor }}
+
+    - name: Docker - Push MAJOR version tag
+      shell: bash
+      if: ${{ steps.version.outputs.targetIsPrerelease != 'true' }}
+      run: docker push $IMAGE_ID:${{ steps.version.outputs.targetMajor }}
+
+    - name: Docker - Push latest tag
+      shell: bash
+      if: ${{ steps.version.outputs.isLatestVersion == 'true' }}
+      run: docker push $IMAGE_ID:latest
+
+    - name: Docker - Push next tag
+      shell: bash
+      if: ${{ steps.version.outputs.isHighestVersion == 'true' }}
+      run: docker push $IMAGE_ID:next

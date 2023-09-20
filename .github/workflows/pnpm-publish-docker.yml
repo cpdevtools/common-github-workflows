@@ -6,9 +6,22 @@ on:
         description: the project name to build
         required: true
         type: string
+      nodeVersion:
+        description: "The version of NodeJs to install"
+        required: false
+        default: "v16.18.1"
+      githubToken:
+        description: "Github Token"
+        required: false
+        default: ${{ github.token }}
+      githubActor:
+        description: "Github Actor"
+        required: false
+        default: ${{ github.actor }}
+
 
 jobs:
-  build_and_run_tests:
+  build_and_publish:
     name: Build and run tests
     runs-on: ubuntu-latest
     steps:
@@ -29,3 +42,11 @@ jobs:
         with:
           script: actions-publish
           projectFilter: ${{ inputs.projectName }}
+
+      - name: Publish
+        uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm
+        with:
+          image: ${{ inputs.projectName }}
+          githubToken: ${{ inputs.githubToken }}
+          githubActor: ${{ inputs.githubActor }}
+          nodeVersion: ${{ inputs.nodeVersion }}
