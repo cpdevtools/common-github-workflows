@@ -44,7 +44,7 @@ jobs:
           projectFilter: ${{ inputs.projectName }}
 
       - name: Publish
-        uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm
+        uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm@main
         with:
           image: ${{ inputs.projectName }}
           githubToken: ${{ inputs.githubToken }}
