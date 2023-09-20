@@ -27,5 +27,5 @@ jobs:
       - name: Run Build Script
         uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
         with:
-          script: actions-publish-docker 
+          script: actions-publish
           projectFilter: ${{ inputs.projectName }}
