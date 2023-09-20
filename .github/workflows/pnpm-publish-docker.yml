@@ -1,4 +1,4 @@
-name: Builds and save docker image artifacts
+name: Builds and publish docker project
 on:
   workflow_call: 
     inputs:
@@ -6,12 +6,12 @@ on:
         description: the project name to build
         required: true
         type: string
+
 jobs:
   build_and_run_tests:
     name: Build and run tests
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
       
@@ -24,7 +24,8 @@ jobs:
           script: actions-build 
           projectFilter: ${{ inputs.projectName }}
 
-      - name: Upload image
-        uses: ishworkh/container-image-artifact-upload@v1.0.0
+      - name: Run Build Script
+        uses: cpdevtools/common-github-workflows/.github/actions/pnpm-run-recursive@main
         with:
-          image: "${{ inputs.projectName }}:latest"
+          script: actions-publish 
+          projectFilter: ${{ inputs.projectName }}
