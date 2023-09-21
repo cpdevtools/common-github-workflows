@@ -23,7 +23,14 @@ runs:
         body: |
           Generated Release v${{ steps.version.outputs.targetVersion }}
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
-        draft: false
+        draft: true
+
+    - uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
+
         
     - name: Create tags
       uses: cpdevtools/action-versions@v0.5
