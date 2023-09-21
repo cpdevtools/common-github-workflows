@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3.3.0
 
       - name: Check Version
-        uses: cpdevtools/common-github-workflows/.github/actions/check-version
+        uses: cpdevtools/common-github-workflows/.github/actions/check-version@main
 
   build_and_publish:
     needs: [setup]
@@ -63,4 +63,4 @@ jobs:
         uses: actions/checkout@v3.3.0
 
       - name: Create Release
-        uses: cpdevtools/common-github-workflows/.github/actions/create-release
+        uses: cpdevtools/common-github-workflows/.github/actions/create-release@main
