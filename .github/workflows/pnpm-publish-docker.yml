@@ -21,11 +21,6 @@ on:
         required: false
         default: ${{ github.actor }}
         type: string
-    secrets:
-      GITHUB_TOKEN:
-        description: "Github Token"
-        required: false
-        type: string
 
 
 jobs:
@@ -49,6 +44,4 @@ jobs:
         uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm@main
         with:
           image: ${{ inputs.projectName }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          githubActor: ${{ inputs.githubActor }}
           nodeVersion: ${{ inputs.nodeVersion }}
