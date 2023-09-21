@@ -49,7 +49,6 @@ jobs:
         uses: cpdevtools/common-github-workflows/.github/actions/publish-docker-image-pnpm@main
         with:
           image: ${{ inputs.projectName }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           githubActor: ${{ inputs.githubActor }}
           nodeVersion: ${{ inputs.nodeVersion }}
-        secrets:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

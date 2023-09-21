@@ -16,11 +16,7 @@ inputs:
   image:
     description: "The name of the image to build"
     required: true
-secrets:
-  GITHUB_TOKEN:
-    description: "Github Token"
-    required: false
-    type: string
+
 
 runs:
   using: composite
@@ -62,7 +58,7 @@ runs:
 
     - name: Docker - Log into registry
       shell: bash
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ inputs.githubActor }} --password-stdin
+      run: echo "${{ inputs.githubToken }}" | docker login ghcr.io -u ${{ inputs.githubActor }} --password-stdin
 
     - name: Docker - Push full version tag
       shell: bash
