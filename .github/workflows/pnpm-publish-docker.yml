@@ -22,10 +22,19 @@ on:
         default: ${{ github.actor }}
         type: string
 
-
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3.3.0
+
+      - name: Check Version
+        uses: cpdevtools/common-github-workflows/.github/actions/check-version
+
   build_and_publish:
-    name: Build and run tests
+    needs: [setup]
+    name: Build and publish to registy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
@@ -45,3 +54,13 @@ jobs:
         with:
           image: ${{ inputs.projectName }}
           nodeVersion: ${{ inputs.nodeVersion }}
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: [build_and_publish]
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3.3.0
+
+      - name: Create Release
+        uses: cpdevtools/common-github-workflows/.github/actions/create-release
