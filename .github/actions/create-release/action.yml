@@ -24,7 +24,6 @@ runs:
         name: Release v${{ steps.version.outputs.targetVersion }}
         body: |
           Generated Release v${{ steps.version.outputs.targetVersion }}
-        draft: false
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
         
     - name: Create tags
