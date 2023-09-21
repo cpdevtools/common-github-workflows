@@ -25,6 +25,8 @@ runs:
         body: |
           Generated Release v${{ steps.version.outputs.targetVersion }}
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
+        omitDraftDuringUpdate: true
+        draft: false
         
     - name: Create tags
       uses: cpdevtools/action-versions@v0.5
