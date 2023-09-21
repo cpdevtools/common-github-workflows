@@ -5,6 +5,12 @@ inputs:
     description: Github Token
     required: false
     default: ${{ github.token }}
+
+outputs: 
+  releaseId:
+    description: The id of the release
+    value: ${{ steps.create_release.outputs.id }}
+
 runs:
   using: composite
   steps:
