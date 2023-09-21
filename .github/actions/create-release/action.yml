@@ -17,8 +17,6 @@ runs:
     - name: Create Release
       id: create_release
       uses: ncipollo/release-action@v1.12.0
-      env:
-        GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
         tag: v${{ steps.version.outputs.targetVersion }}
         name: Release v${{ steps.version.outputs.targetVersion }}
