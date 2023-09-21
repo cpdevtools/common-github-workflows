@@ -31,13 +31,6 @@ runs:
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
         draft: true
 
-    - uses: eregon/publish-release@v1
-      env:
-        GITHUB_TOKEN: ${{ inputs.githubToken }}
-      with:
-        release_id: ${{ steps.create_release.outputs.id }}
-
-        
     - name: Create tags
       uses: cpdevtools/action-versions@v0.5
       with:
