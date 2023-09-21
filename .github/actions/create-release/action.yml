@@ -16,16 +16,15 @@ runs:
 
     - name: Create Release
       id: create_release
-      uses: ncipollo/release-action@v1.12.0
+      uses: actions/create-release@v1.0.1
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
-        tag: v${{ steps.version.outputs.targetVersion }}
-        name: Release v${{ steps.version.outputs.targetVersion }}
+        tag_name: v${{ steps.version.outputs.targetVersion }}
+        release_name: Release v${{ steps.version.outputs.targetVersion }}
         body: |
           Generated Release v${{ steps.version.outputs.targetVersion }}
         prerelease: ${{ steps.version.outputs.targetIsPrerelease }}
-        omitDraftDuringUpdate: true
         draft: false
         
     - name: Create tags
