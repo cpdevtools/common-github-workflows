@@ -65,9 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_and_publish]
     outputs:
-      releaseId:
-        description: The id of the release
-        value: ${{ steps.create_release.outputs.releaseId }}
+      releaseId: ${{ steps.create_release.outputs.releaseId }}
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3.3.0
