@@ -1,0 +1,12 @@
+name: Check that the PR version is valid
+on:
+  workflow_call: 
+
+jobs:
+  check_pr_version:
+    name: Create a version pull request if necessary
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Checkout Project
+      #   uses: actions/checkout@v3.3.0
+      - uses: cpdevtools/common-github-workflows/.github/actions/check-version@main
