@@ -7,5 +7,5 @@ jobs:
     name: Version is valid for release
     runs-on: ubuntu-latest
     steps:
-      name: check version
       - uses: cpdevtools/common-github-workflows/.github/actions/check-version@main
+        name: check version
