@@ -12,6 +12,6 @@ runs:
   steps:
     - id: version
       name: Check Version
-      uses: cpdevtools/action-versions@v0.5
+      uses: cpdevtools/action-versions@main
       with:
         failInvalidCanCreate: true
