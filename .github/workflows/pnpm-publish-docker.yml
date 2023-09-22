@@ -59,17 +59,3 @@ jobs:
         with:
           image: ${{ inputs.projectName }}
           nodeVersion: ${{ inputs.nodeVersion }}
-
-  create_release:
-    name: Create github release and add version tags
-    runs-on: ubuntu-latest
-    needs: [build_and_publish]
-    outputs:
-      releaseId: ${{ steps.create_release.outputs.releaseId }}
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v3.3.0
-
-      - name: Create Release
-        id: create_release
-        uses: cpdevtools/common-github-workflows/.github/actions/create-release@main
