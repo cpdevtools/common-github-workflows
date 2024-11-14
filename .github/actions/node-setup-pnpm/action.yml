@@ -20,7 +20,7 @@ runs:
       with:
         version: ${{ inputs.pnpmVersion }}
         run_install: false
-    - uses: actions/setup-node@v3.6.0
+    - uses: actions/setup-node@v4
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
