@@ -4,11 +4,11 @@ inputs:
   pnpmVersion:
     description: The version of pnpm to install
     required: false
-    default: 8.6.6
+    default: 9.1.2
   nodeVersion:
     description: The version of NodeJs to install
     required: false
-    default: 16.18.1
+    default: 20.13.1
   githubToken:
     description: Github Token
     required: false
