@@ -6,7 +6,7 @@ on:
         description: The version of NodeJs to install
         required: false
         type: string
-        default: v16.18.1
+        default: v20.13.1
       toNpm:
         description: Publish to npm package registry
         type: boolean
